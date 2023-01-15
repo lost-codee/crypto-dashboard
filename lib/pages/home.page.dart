@@ -1,5 +1,6 @@
 import 'package:crypto_dashboard/core/constants.dart';
 import 'package:crypto_dashboard/core/responsive.dart';
+import 'package:crypto_dashboard/pages/views/activity.dart';
 import 'package:crypto_dashboard/pages/views/balance.dart';
 import 'package:crypto_dashboard/pages/views/recent-transactions.dart';
 import 'package:flutter/material.dart';
@@ -12,38 +13,27 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        primary: false,
-        padding: const EdgeInsets.all(defaultPadding),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 5,
-              child: Column(
-                children: const [
-                  BannerHeading(),
-                  SizedBox(height: defaultPadding),
-                  TopMarket(),
-                ],
-              ),
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 5,
+            child: Column(
+              children: [
+                const BannerHeading(),
+                const SizedBox(height: defaultPadding),
+                const TopMarket(),
+                const SizedBox(height: defaultPadding),
+                if (Responsive.isMobile(context)) const Activity(),
+              ],
             ),
-            if (!Responsive.isMobile(context))
-              const SizedBox(width: defaultPadding),
-            if (!Responsive.isMobile(context))
-              Expanded(
-                flex: 2,
-                child: Column(
-                  children: const [
-                    BalanceDetails(),
-                    SizedBox(height: defaultPadding),
-                    RecentTransactions(),
-                  ],
-                ),
-              ),
-          ],
-        ),
+          ),
+          if (!Responsive.isMobile(context))
+            const SizedBox(width: defaultPadding),
+          if (!Responsive.isMobile(context))
+            const Expanded(flex: 2, child: Activity())
+        ],
       ),
     );
   }

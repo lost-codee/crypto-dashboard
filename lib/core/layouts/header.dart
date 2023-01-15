@@ -12,33 +12,35 @@ class Header extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(defaultPadding),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Expanded(child: SearchField()),
-          if (!Responsive.isMobile(context))
-            Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-          NightModeSwitch(
-            value: true,
-            onChanged: (value) => {},
-          ),
-          const VerticalDivider(
-            color: Colors.white70,
-            thickness: 1,
-            width: defaultPadding,
-          ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        if (!Responsive.isDesktop(context))
           IconButton(
-            icon: const Icon(
-              FeatherIcons.bell,
-              size: 18.0,
-            ),
-            onPressed: () => {},
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
           ),
-          const ProfileCard(),
-        ],
-      ),
+        const Expanded(child: SearchField()),
+        if (!Responsive.isMobile(context))
+          Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
+        NightModeSwitch(
+          value: true,
+          onChanged: (value) => {},
+        ),
+        const VerticalDivider(
+          color: Colors.white70,
+          thickness: 1,
+          width: defaultPadding,
+        ),
+        IconButton(
+          icon: const Icon(
+            FeatherIcons.bell,
+            size: 18.0,
+          ),
+          onPressed: () => {},
+        ),
+        const ProfileCard(),
+      ],
     );
   }
 }

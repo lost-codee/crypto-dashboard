@@ -27,12 +27,17 @@ class AppPage extends StatelessWidget {
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: Column(
-                children: const [
-                  Header(),
-                  SizedBox(height: defaultPadding),
-                  HomePage(),
-                ],
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: Column(
+                    children: const [
+                      Header(),
+                      SizedBox(height: defaultPadding),
+                      HomePage(),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
