@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: actions/setup-flutter@v2
+        with:
+          flutter-version: stable
+          channel: stable
+
+      - name: Build and Deploy
+        run: flutter build web && npx gh-pages -d build/web
