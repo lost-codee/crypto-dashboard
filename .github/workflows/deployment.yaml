@@ -20,4 +20,4 @@ jobs:
           channel: stable
 
       - name: Build and Deploy
-        run: flutter build web && npx gh-pages -d build/web
+        run: flutter build web --release && npx gh-pages -d build/web
